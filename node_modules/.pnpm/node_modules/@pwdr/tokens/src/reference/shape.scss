@@ -1,0 +1,98 @@
+@use './system/shape.scss';
+
+$pwdr-ref-shape: (
+  radius: (
+    xs: (
+      sys: $pwdr-sys-shape-size-100
+    ),
+    sm: (
+      sys: $pwdr-sys-shape-size-150
+    ),
+    md: (
+      sys: $pwdr-sys-shape-size-200
+    ),
+    lg: (
+      sys: $pwdr-sys-shape-size-300
+    ),
+    xl: (
+      sys: $pwdr-sys-shape-size-500
+    ),
+    full: (
+      sys: $pwdr-sys-shape-size-max
+    )
+  ),
+
+  width: (
+    sm: (
+      sys: $pwdr-sys-shape-size-025
+    ),
+    md: (
+      sys: $pwdr-sys-shape-size-050
+    )
+  ),
+
+  space: (
+    000: (
+      sys: $pwdr-sys-shape-size-000
+    ),
+    025: (
+      sys: $pwdr-sys-shape-size-025
+    ),
+    050: (
+      sys: $pwdr-sys-shape-size-050
+    ),
+    075: (
+      sys: $pwdr-sys-shape-size-075
+    ),
+    100: (
+      sys: $pwdr-sys-shape-size-100
+    ),
+    150: (
+      sys: $pwdr-sys-shape-size-150
+    ),
+    200: (
+      sys: $pwdr-sys-shape-size-200
+    ),
+    300: (
+      sys: $pwdr-sys-shape-size-300
+    ),
+    400: (
+      sys: $pwdr-sys-shape-size-400
+    ),
+    500: (
+      sys: $pwdr-sys-shape-size-500
+    ),
+    600: (
+      sys: $pwdr-sys-shape-size-600
+    ),
+    700: (
+      sys: $pwdr-sys-shape-size-700
+    ),
+    1000: (
+      sys: $pwdr-sys-shape-size-1000
+    ),
+    1500: (
+      sys: $pwdr-sys-shape-size-1500
+    ),
+    2000: (
+      sys: $pwdr-sys-shape-size-2000
+    ),
+    max: (
+      sys: $pwdr-sys-shape-size-max
+    )
+  )
+);
+
+@function pwdr-ref-shape($group, $name) {
+  $group-map: map-get($pwdr-ref-shape, $group);
+  @if $group-map == null {
+    @return null;
+  }
+
+  $token-map: map-get($group-map, $name);
+  @if $token-map == null {
+    @return null;
+  }
+
+  @return map-get($token-map, sys);
+}

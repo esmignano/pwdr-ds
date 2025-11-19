@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@pwdr/tokens": ["packages/tokens/src"],
+      "@pwdr/theme": ["packages/theme/src"],
+      "@pwdr/react": ["packages/react/src"],
+      "@pwdr/icons": ["packages/icons/src"],
+      "@pwdr/utils": ["packages/utils/src"]
+    }
+  }
+}
