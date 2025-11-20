@@ -1,0 +1,22 @@
+export const shape = {
+    size : {
+        "000":   { value: "0px" },
+        "025":   { value: "1px" },
+        "050":   { value: "2px" },
+        "075":   { value: "3px" },
+        "100":   { value: "4px" },
+        "150":   { value: "6px" },
+        "200":   { value: "8px" },
+        "300":   { value: "12px" },
+        "400":   { value: "16px" },
+        "500":   { value: "20px" },
+        "600":   { value: "24px" },
+        "700":   { value: "28px" },
+        "1000":  { value: "40px" },
+        "1500":  { value: "60px" },
+        "2000":  { value: "80px" },
+        "max":   { value: "9999px" }
+    }
+} as const;
+
+export type ShapeSystem = typeof shape;

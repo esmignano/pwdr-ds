@@ -1,0 +1,73 @@
+export const color = {
+    palette: {
+        neutral: {
+            "1000": { value: "#000000" },
+            "950":  { value: "#050038" },
+            "900":  { value: "#1A004B" },
+            "800":  { value: "#2C1866" },
+            "700":  { value: "#413876" },
+            "600":  { value: "#585485" },
+            "500":  { value: "#6B698B" },
+            "400":  { value: "#8483A4" },
+            "300":  { value: "#9F9DBF" },
+            "200":  { value: "#BAB8DB" },
+            "100":  { value: "#D6D4F8" },
+            "050":  { value: "#F4F4FF" },
+            "000":  { value: "#FFFFFF" }
+        },
+
+        primary: {
+            "700": { value: "#3D00D2" },
+            "600": { value: "#5243F1" },
+            "500": { value: "#6666FF" },
+            "400": { value: "#7E87FF" },
+            "300": { value: "#99A4FF" },
+            "200": { value: "#B6C0FF" },
+            "100": { value: "#D4DAFF" }
+        },
+
+        grey: {
+            "500": { value: "#E6E6E6" }
+        },
+
+        green: {
+            "900": { value: "#001e16" },
+            "800": { value: "#004637" },
+            "700": { value: "#00785f" },
+            "600": { value: "#00ab89" },
+            "500": { value: "#33D1AB" },
+            "400": { value: "#4dddb8" },
+            "300": { value: "#5debc4" },
+            "200": { value: "#6cf8d1" },
+            "100": { value: "#9cffe0" },
+            "050": { value: "#dafff2" }
+        },
+
+        yellow: {
+            "500": { value: "#FFBB00" }
+        },
+
+        red: {
+            "900": { value: "#360004" },
+            "800": { value: "#6b0010" },
+            "700": { value: "#ad0021" },
+            "600": { value: "#e53440" },
+            "500": { value: "#ff6666" },
+            "400": { value: "#ff8884" },
+            "300": { value: "#ffa5a0" },
+            "200": { value: "#ffc0bc" },
+            "100": { value: "#ffd9d6" },
+            "050": { value: "#fff2f0" }
+        },
+
+         periwinkle: {
+            "500": { value: "#D1DFF9" }
+        },
+
+        purple: {
+            "500": { value: "#680DDF" }
+        }
+    }
+} as const;
+
+export type ColorSystem = typeof color;

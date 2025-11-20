@@ -1,6 +1,8 @@
 // packages/tokens/src/utils/token.ts
-import sysColor from "../system/color.json";
-import refColor from "../reference/color.json";
+
+import { systemTokens } from "../system/index.sys";
+import { referenceTokens } from "../reference/index.ref";
+import { mixinTokens } from "../mixins/index.mxn";
 
 export type PwdrThemeKey = "light" | "dark";
 
@@ -11,42 +13,71 @@ function getDeep(obj: any, path: string): any {
   );
 }
 
-// Expects a *trimmed* path like "color.palette.neutral.050"
-export function getSysColor(path: string): string | undefined {
-  const node = getDeep(sysColor, path) as { value?: string } | undefined;
+// ---- System tokens (pwdr.sys.*) --------------------------
+
+export function getSysTokenValue(path: string): string | undefined {
+  const node = getDeep(systemTokens, path) as { value?: string } | undefined;
   return node?.value;
 }
 
-// Expects a *trimmed* path like "color.border.default"
-export function getRefColor(
+// ---- Reference tokens (pwdr.ref.*) ----------------------
+
+export function getRefTokenValue(
   path: string,
   theme: PwdrThemeKey = "light"
 ): string | undefined {
-  const node = getDeep(refColor, path) as any;
+  const node = getDeep(referenceTokens, path) as any;
   if (!node) return undefined;
 
-  const baseValue = node.value as string;
-  const darkValue = node.dark?.value as string | undefined;
+  const base = node.value as string | undefined;
+  const darkVal = node.dark?.value as string | undefined;
 
-  // baseValue / darkValue are sys token names like "pwdr.sys.color.palette.neutral.050"
-  const sysTokenName =
-    theme === "dark" && darkValue ? darkValue : baseValue;
+  let val = base;
+  if (theme === "dark" && darkVal && darkVal !== "None") {
+    val = darkVal;
+  }
 
-  const segs = sysTokenName.split(".");
-  const trimmed =
-    segs[0] === "pwdr" && segs[1] === "sys"
-      ? segs.slice(2).join(".")
-      : sysTokenName;
+  if (!val) return undefined;
 
-  return getSysColor(trimmed);
+  // CASE 1: value points to a system token
+  if (val.startsWith("pwdr.sys.")) {
+    const trimmed = val.replace("pwdr.sys.", ""); // e.g. "color.palette.neutral.050"
+    return getSysTokenValue(trimmed);
+  }
+
+  // CASE 2: value points to another ref token (recursive)
+  if (val.startsWith("pwdr.ref.")) {
+    const next = val.replace("pwdr.ref.", ""); // e.g. "color.border.default"
+    return getRefTokenValue(next, theme);
+  }
+
+  // CASE 3: already raw (hex, px, rem, etc.)
+  return val;
 }
 
-/**
- * Resolve a token by its full canonical name.
- *
- * - System:   token("pwdr.sys.color.palette.neutral.050")
- * - Reference: token("pwdr.ref.color.border.default", { theme: "dark" })
- */
+// ---- Mixin tokens (pwdr.mxn.*) --------------------------
+
+function getMixinTokenValue(
+  path: string,
+  theme: PwdrThemeKey = "light"
+): string | undefined {
+  const node = getDeep(mixinTokens, path) as any;
+  if (!node) return undefined;
+
+  const val = node.value as string | undefined;
+  if (!val) return undefined;
+
+  // Mixins always point to other tokens (ref/sys), so just reuse token()
+  if (val.startsWith("pwdr.")) {
+    return token(val, { theme });
+  }
+
+  // If one day a mixin property is a raw value:
+  return val;
+}
+
+// ---- Public API -----------------------------------------
+
 export function token(
   fullName: string,
   options?: { theme?: PwdrThemeKey },
@@ -54,23 +85,71 @@ export function token(
 ): string {
   const theme = options?.theme ?? "light";
 
+  // System tokens
   if (fullName.startsWith("pwdr.sys.")) {
-    const path = fullName.slice("pwdr.sys.".length); // "color.palette.neutral.050"
-    return getSysColor(path) ?? fallback ?? "";
+    const path = fullName.slice("pwdr.sys.".length);
+    return getSysTokenValue(path) ?? fallback ?? "";
   }
 
+  // Reference tokens
   if (fullName.startsWith("pwdr.ref.")) {
-    const path = fullName.slice("pwdr.ref.".length); // "color.border.default"
-    return getRefColor(path, theme) ?? fallback ?? "";
+    const path = fullName.slice("pwdr.ref.".length);
+    return getRefTokenValue(path, theme) ?? fallback ?? "";
   }
 
-  // If someone passes a short path, you can choose how to handle it.
-  // Here we default to treating it as a ref token path:
-  const refResult = getRefColor(fullName, theme);
+  // Mixin tokens – leaf properties like:
+  // "pwdr.mxn.typography.title.xxxl.upper.font-size"
+  if (fullName.startsWith("pwdr.mxn.")) {
+    const path = fullName.slice("pwdr.mxn.".length);
+    return getMixinTokenValue(path, theme) ?? fallback ?? "";
+  }
+
+  // Fallback: try as ref, then sys, then mixin (for short paths)
+  const refResult = getRefTokenValue(fullName, theme);
   if (refResult != null) return refResult;
 
-  const sysResult = getSysColor(fullName);
+  const sysResult = getSysTokenValue(fullName);
   if (sysResult != null) return sysResult;
 
+  const mixinResult = getMixinTokenValue(fullName, theme);
+  if (mixinResult != null) return mixinResult;
+
   return fallback ?? "";
+}
+
+// Convenience helper: resolve a full mixin object to CSS-ready props
+export function mixin(
+  fullName: string,
+  options?: { theme?: PwdrThemeKey }
+): Record<string, string> {
+  const theme = options?.theme ?? "light";
+
+  if (!fullName.startsWith("pwdr.mxn.")) {
+    throw new Error(
+      `mixin() expects a mixin name starting with "pwdr.mxn.", got "${fullName}"`
+    );
+  }
+
+  const path = fullName.slice("pwdr.mxn.".length); // e.g. "typography.title.xxxl.upper"
+  const node = getDeep(mixinTokens, path) as any;
+
+  if (!node || typeof node !== "object") {
+    return {};
+  }
+
+  const result: Record<string, string> = {};
+
+  for (const [prop, leaf] of Object.entries(node)) {
+    const val = (leaf as any).value as string | undefined;
+
+    if (!val) continue;
+
+    if (val.startsWith("pwdr.")) {
+      result[prop] = token(val, { theme });
+    } else {
+      result[prop] = val;
+    }
+  }
+
+  return result;
 }
