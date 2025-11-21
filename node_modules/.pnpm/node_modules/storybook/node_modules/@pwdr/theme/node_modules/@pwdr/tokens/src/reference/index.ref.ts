@@ -4,7 +4,8 @@ import { elevation } from "./elevation.ref";
 
 export const referenceTokens = {
     'shape' : shape,
-    'color' : color
+    'color' : color,
+    'elevation' : elevation
 } as const;
 
 export type ReferenceTokens = typeof referenceTokens;

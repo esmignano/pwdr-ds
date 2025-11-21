@@ -32,7 +32,7 @@ export const color = {
         value: "pwdr.ref.color.palette.c05-00",
         dark: { value: "None" }
       },
-      diabled: {
+      disabled: {
         value: "pwdr.sys.color.palette.grey.500",
         dark: { value: "None" }
       },
@@ -71,7 +71,7 @@ export const color = {
         value: "pwdr.sys.color.palette.green.500",
         dark: { value: "None" }
       },
-      diabled: {
+      disabled: {
         value: "pwdr.sys.color.palette.grey.500",
         dark: { value: "None" }
       },
@@ -118,7 +118,7 @@ export const color = {
         value: "pwdr.sys.color.palette.green.500",
         dark: { value: "None" }
       },
-      diabled: {
+      disabled: {
         value: "pwdr.sys.color.palette.grey.500",
         dark: { value: "None" }
       },
@@ -165,7 +165,7 @@ export const color = {
         value: "pwdr.sys.color.palette.green.500",
         dark: { value: "None" }
       },
-      diabled: {
+      disabled: {
         value: "pwdr.sys.color.palette.grey.500",
         dark: { value: "None" }
       },
@@ -232,7 +232,7 @@ export const color = {
         value: "pwdr.sys.color.palette.green.500",
         dark: { value: "None" }
       },
-      diabled: {
+      disabled: {
         value: "pwdr.sys.color.palette.grey.500",
         dark: { value: "None" }
       },
@@ -256,7 +256,7 @@ export const color = {
         value: "None",
         dark: { value: "None" }
       },
-      "diabled.hover": {
+      "disabled.hover": {
         value: "None",
         dark: { value: "None" }
       },
@@ -323,7 +323,7 @@ export const color = {
         value: "pwdr.sys.color.palette.neutral.000",
         dark: { value: "None" }
       },
-      "on-surface-diabled": {
+      "on-surface-disabled": {
         value: "pwdr.sys.color.palette.neutral.500",
         dark: { value: "None" }
       },
@@ -347,7 +347,7 @@ export const color = {
         value: "pwdr.sys.color.palette.neutral.000",
         dark: { value: "None" }
       },
-      "on-surface-diabled.hover": {
+      "on-surface-disabled.hover": {
         value: "pwdr.sys.color.palette.neutral.500",
         dark: { value: "None" }
       },
@@ -391,7 +391,7 @@ export const color = {
         value: "pwdr.sys.color.palette.green.500",
         dark: { value: "None" }
       },
-      diabled: {
+      disabled: {
         value: "pwdr.sys.color.palette.grey.500",
         dark: { value: "None" }
       },
