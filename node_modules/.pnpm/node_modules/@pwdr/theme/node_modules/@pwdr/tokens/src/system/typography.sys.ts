@@ -12,26 +12,28 @@ export const typography = {
     },
 
     "line-hieght": {
-        sm: { value: "1.5 rem" },
-        md: { value: "1.25 rem" },
-        lg: { value: "1 rem / 16 px" }
+        "050" : { value: "1.5rem" },
+        "100" : { value: "1.25rem" },
+        '150' : { value: "1rem" }
     },
 
     "font-size": {
-        "8":  { value: "64px" },
-        "10": { value: "48px" },
-        "12": { value: "32px" },
-        "14": { value: "24px" },
-        "16": { value: "20px" },
-        "20": { value: "16px" },
-        "24": { value: "14px" },
-        "32": { value: "12px" },
-        "48": { value: "10px" },
-        "64": { value: "8px" }
+        "8":  { value: "4rem" },
+        "10": { value: "3rem" },
+        "12": { value: "2rem" },
+        "14": { value: "1.5rem" },
+        "16": { value: "1.25rem" },
+        "20": { value: "1rem" },
+        "24": { value: ".875rem" },
+        "32": { value: ".75rem" },
+        "48": { value: ".625rem" },
+        "64": { value: ".5rem" }
     },
 
     case: {
         upper: { value: "uppercase" },
+        camelcase: { value: 'capitalize' },
+        default: { value: 'none' },
         lower: { value: "none" }
     }
 } as const;

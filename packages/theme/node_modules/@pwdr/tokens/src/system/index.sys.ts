@@ -1,7 +1,7 @@
 import { shape } from "./shape.sys"
 import { color } from "./color.sys"
 import { typography } from "./typography.sys"
-import { elevation } from "./elevations.sys"
+import { elevation } from "./elevation.sys"
 
 export const systemTokens = {
 

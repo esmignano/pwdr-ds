@@ -1,8 +1,7 @@
 export const color = {
     palette: {
         neutral: {
-            "1000": { value: "#000000" },
-            "950":  { value: "#050038" },
+            "1000":  { value: "#050038" },
             "900":  { value: "#1A004B" },
             "800":  { value: "#2C1866" },
             "700":  { value: "#413876" },

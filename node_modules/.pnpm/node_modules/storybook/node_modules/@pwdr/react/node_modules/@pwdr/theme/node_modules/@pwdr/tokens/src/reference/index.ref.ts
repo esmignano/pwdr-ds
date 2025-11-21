@@ -1,11 +1,10 @@
 import { shape } from "./shape.ref";
 import { color } from "./color.ref"
-import { typography } from "../system/typography.sys";
+import { elevation } from "./elevation.ref";
 
 export const referenceTokens = {
     'shape' : shape,
-    'color' : color,
-    'typography' : typography
+    'color' : color
 } as const;
 
 export type ReferenceTokens = typeof referenceTokens;
