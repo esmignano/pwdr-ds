@@ -85,53 +85,6 @@ export const color = {
       }
     },
 
-    state: {
-      default: {
-        value: "pwdr.sys.color.palette.neutral.000",
-        dark: { value: "None" }
-      },
-      secondary: {
-        value: "pwdr.sys.color.palette.neutral.050",
-        dark: { value: "None" }
-      },
-      neutral: {
-        value: "pwdr.sys.color.palette.neutral.500",
-        dark: { value: "None" }
-      },
-      active: {
-        value: "pwdr.sys.color.palette.primary.500",
-        dark: { value: "None" }
-      },
-      bold: {
-        value: "pwdr.sys.color.palette.neutral.950",
-        dark: { value: "None" }
-      },
-      alert: {
-        value: "pwdr.sys.color.palette.red.500",
-        dark: { value: "None" }
-      },
-      warning: {
-        value: "pwdr.sys.color.palette.yellow.500",
-        dark: { value: "None" }
-      },
-      success: {
-        value: "pwdr.sys.color.palette.green.500",
-        dark: { value: "None" }
-      },
-      disabled: {
-        value: "pwdr.sys.color.palette.grey.500",
-        dark: { value: "None" }
-      },
-      asset: {
-        value: "pwdr.sys.color.palette.periwinkle.500",
-        dark: { value: "None" }
-      },
-      discovery: {
-        value: "pwdr.sys.color.palette.purple.500",
-        dark: { value: "None" }
-      }
-    },
-
     icon: {
       default: {
         value: "pwdr.sys.color.palette.neutral.000",
