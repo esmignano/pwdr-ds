@@ -17,7 +17,7 @@ export const color = {
         dark: { value: "None" }
       },
       bold: {
-        value: "pwdr.sys.color.palette.neutral.950",
+        value: "pwdr.sys.color.palette.neutral.1000",
         dark: { value: "None" }
       },
       alert: {
@@ -56,7 +56,7 @@ export const color = {
         dark: { value: "None" }
       },
       bold: {
-        value: "pwdr.sys.color.palette.neutral.950",
+        value: "pwdr.sys.color.palette.neutral.1000",
         dark: { value: "None" }
       },
       alert: {
@@ -103,7 +103,7 @@ export const color = {
         dark: { value: "None" }
       },
       bold: {
-        value: "pwdr.sys.color.palette.neutral.950",
+        value: "pwdr.sys.color.palette.neutral.1000",
         dark: { value: "None" }
       },
       alert: {
@@ -137,15 +137,15 @@ export const color = {
         value: "pwdr.sys.color.palette.neutral.000",
         dark: { value: "None" }
       },
-      "default.seconday": {
+      "default-seconday": {
         value: "pwdr.sys.color.palette.primary.200",
         dark: { value: "None" }
       },
-      "default.tertariy": {
+      "default-tertariy": {
         value: "pwdr.sys.color.palette.primary.100",
         dark: { value: "None" }
       },
-      "default.hover": {
+      "default-hover": {
         value: "pwdr.sys.color.palette.neutral.050",
         dark: { value: "None" }
       },
@@ -153,7 +153,7 @@ export const color = {
         value: "pwdr.sys.color.palette.neutral.050",
         dark: { value: "None" }
       },
-      "neutral.hover": {
+      "neutral-hover": {
         value: "None",
         dark: { value: "None" }
       },
@@ -161,15 +161,15 @@ export const color = {
         value: "pwdr.sys.color.palette.primary.500",
         dark: { value: "None" }
       },
-      "active.hover": {
+      "active-hover": {
         value: "pwdr.sys.color.palette.primary.300",
         dark: { value: "None" }
       },
       bold: {
-        value: "pwdr.sys.color.palette.neutral.950",
+        value: "pwdr.sys.color.palette.neutral.1000",
         dark: { value: "None" }
       },
-      "bold.hover": {
+      "bold-hover": {
         value: "pwdr.sys.color.palette.neutral.600",
         dark: { value: "None" }
       },
@@ -196,63 +196,39 @@ export const color = {
       discovery: {
         value: "pwdr.sys.color.palette.purple.500",
         dark: { value: "None" }
-      },
-      "alert.hover": {
-        value: "None",
-        dark: { value: "None" }
-      },
-      "warning.hover": {
-        value: "None",
-        dark: { value: "None" }
-      },
-      "success.hover": {
-        value: "None",
-        dark: { value: "None" }
-      },
-      "disabled.hover": {
-        value: "None",
-        dark: { value: "None" }
-      },
-      "asset.hover": {
-        value: "None",
-        dark: { value: "None" }
-      },
-      "discovery.hover": {
-        value: "None",
-        dark: { value: "None" }
       }
     },
 
     text: {
       "on-surface-default": {
-        value: "pwdr.sys.color.palette.neutral.950",
+        value: "pwdr.sys.color.palette.neutral.1000",
         dark: { value: "None" }
       },
-      "on-surface-default.secondary": {
-        value: "pwdr.sys.color.palette.neutral.950",
+      "on-surface-default-secondary": {
+        value: "pwdr.sys.color.palette.neutral.1000",
         dark: { value: "None" }
       },
-      "on-surface-default.tertariy": {
-        value: "pwdr.sys.color.palette.neutral.950",
+      "on-surface-default-tertariy": {
+        value: "pwdr.sys.color.palette.neutral.1000",
         dark: { value: "None" }
       },
-      "on-surface-default.hover": {
-        value: "pwdr.sys.color.palette.neutral.950",
+      "on-surface-default-hover": {
+        value: "pwdr.sys.color.palette.neutral.1000",
         dark: { value: "None" }
       },
       "on-surface-neutral": {
-        value: "pwdr.sys.color.palette.neutral.950",
+        value: "pwdr.sys.color.palette.neutral.1000",
         dark: { value: "None" }
       },
-      "on-surface-neutral.hover": {
-        value: "pwdr.sys.color.palette.neutral.950",
+      "on-surface-neutral-hover": {
+        value: "pwdr.sys.color.palette.neutral.1000",
         dark: { value: "None" }
       },
       "on-surface-active": {
         value: "pwdr.sys.color.palette.neutral.000",
         dark: { value: "None" }
       },
-      "on-surface-active.hover": {
+      "on-surface-active-hover": {
         value: "pwdr.sys.color.palette.neutral.000",
         dark: { value: "None" }
       },
@@ -260,7 +236,7 @@ export const color = {
         value: "pwdr.sys.color.palette.neutral.000",
         dark: { value: "None" }
       },
-      "on-surface-bold.hover": {
+      "on-surface-bold-hover": {
         value: "pwdr.sys.color.palette.neutral.000",
         dark: { value: "None" }
       },
@@ -281,7 +257,7 @@ export const color = {
         dark: { value: "None" }
       },
       "on-surface-asset": {
-        value: "pwdr.sys.color.palette.neutral.950",
+        value: "pwdr.sys.color.palette.neutral.1000",
         dark: { value: "None" }
       },
       "on-surface-discovery": {
@@ -292,20 +268,20 @@ export const color = {
         value: "pwdr.sys.color.palette.neutral.000",
         dark: { value: "None" }
       },
-      "on-surface-warning.hover": {
+      "on-surface-warning-hover": {
         value: "pwdr.sys.color.palette.neutral.000",
         dark: { value: "None" }
       },
-      "on-surface-success.hover": {
+      "on-surface-success-hover": {
         value: "pwdr.sys.color.palette.neutral.000",
         dark: { value: "None" }
       },
-      "on-surface-disabled.hover": {
+      "on-surface-disabled-hover": {
         value: "pwdr.sys.color.palette.neutral.500",
         dark: { value: "None" }
       },
-      "on-surface-asset.hover": {
-        value: "pwdr.sys.color.palette.neutral.950",
+      "on-surface-asset-hover": {
+        value: "pwdr.sys.color.palette.neutral.1000",
         dark: { value: "None" }
       },
       "on-surface-discovery.hover": {
@@ -313,10 +289,10 @@ export const color = {
         dark: { value: "None" }
       },
       default: {
-        value: "pwdr.sys.color.palette.neutral.950",
+        value: "pwdr.sys.color.palette.neutral.1000",
         dark: { value: "None" }
       },
-      "default.seconday": {
+      "default-seconday": {
         value: "pwdr.sys.color.palette.primary.300",
         dark: { value: "None" }
       },

@@ -1,7 +1,7 @@
 export const typography = {
 
     "font-family": {
-        value: "Figtree', Arial, sans-serif"
+        value: "'Figtree', Arial, sans-serif"
     },
 
     "font-weight": {
@@ -11,7 +11,7 @@ export const typography = {
         bold:     { value: "700" }
     },
 
-    "line-hieght": {
+    "line-height": {
         "050" : { value: "1.5rem" },
         "100" : { value: "1.25rem" },
         '150' : { value: "1rem" }
@@ -34,7 +34,7 @@ export const typography = {
         upper: { value: "uppercase" },
         camelcase: { value: 'capitalize' },
         default: { value: 'none' },
-        lower: { value: "none" }
+        lower: { value: "lowercase" }
     }
 } as const;
 

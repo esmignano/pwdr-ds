@@ -1,5 +1,8 @@
 {
   "name": "@pwdr/tokens",
+  "exports" : {
+    ".": "./dist/index.js"
+  },
   "version": "0.1.0",
   "private": false,
   "main": "dist/index.cjs",

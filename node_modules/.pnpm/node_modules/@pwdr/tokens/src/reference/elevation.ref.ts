@@ -1,5 +1,3 @@
-import { token } from "../utils/token";
-
 export const elevation = {
     surface : {
         default : {

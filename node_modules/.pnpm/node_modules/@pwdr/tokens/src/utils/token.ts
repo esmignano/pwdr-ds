@@ -4,11 +4,24 @@ import { systemTokens } from "../system/index.sys";
 import { referenceTokens } from "../reference/index.ref";
 import { mixinTokens } from "../mixins/index.mxn";
 
-export type PwdrThemeKey = "light" | "dark";
+/**
+ * Theme keys:
+ * - "light" uses the base `value`
+ * - any other theme (e.g. "dark", "high-contrast") will use that theme override
+ *   when present, otherwise falls back to base `value`.
+ */
+export type PwdrThemeKey = "light" | "dark" | "high-contrast";
 
 type TokenOptions = {
-  theme?: PwdrThemeKey;
+  theme?: PwdrThemeKey | string;
 };
+
+function normalizeTheme(theme: string | undefined): PwdrThemeKey {
+  const t = (theme ?? "light").toLowerCase().trim();
+  if (t === "dark") return "dark";
+  if (t === "high-contrast" || t === "highcontrast" || t === "hc") return "high-contrast";
+  return "light";
+}
 
 /**
  * Safely read a deep path like "color.palette.neutral.050" off an object.
@@ -50,25 +63,53 @@ function resolveRawValue(raw: any, theme: PwdrThemeKey): any {
 }
 
 /**
- * Resolve a node coming from referenceTokens (pwdr.ref.*).
- * Handles theme (light/dark) and recursive references.
+ * Reference-token leaf shape (supports multiple themes).
+ * Example:
+ *   {
+ *     value: "pwdr.sys.color.palette.neutral.050",
+ *     dark: { value: "pwdr.sys.color.palette.neutral.950" },
+ *     "high-contrast": { value: "pwdr.sys.color.palette.neutral.1000" }
+ *   }
+ *
+ * Also supports:
+ *   {
+ *     value: "...",
+ *     themes: { dark: { value: "..." }, "high-contrast": { value: "..." } }
+ *   }
  */
 function resolveReferenceNode(node: any, theme: PwdrThemeKey): any {
   if (!node) return undefined;
 
-  // Leaf: { value, dark? }
-  if ("value" in node || "dark" in node) {
-    const base = node as { value?: any; dark?: { value?: any } };
+  // Leaf: { value, <themeKey>?, themes? }
+  if (
+    typeof node === "object" &&
+    ("value" in node || "themes" in node || "dark" in node || "high-contrast" in node)
+  ) {
+    const base = node as any;
 
     let raw = base.value;
 
-    if (
-      theme === "dark" &&
-      base.dark &&
-      typeof base.dark.value !== "undefined" &&
-      base.dark.value !== "None"
-    ) {
-      raw = base.dark.value;
+    // Theme override: only apply when theme !== "light"
+    if (theme !== "light") {
+      // 1) direct key override (e.g. node["high-contrast"])
+      const direct = base[theme];
+
+      // 2) themes bag (e.g. node.themes["high-contrast"])
+      const bag = base.themes?.[theme];
+
+      // 3) backward-compat for older shape where only `dark` existed
+      const legacyDark = theme === "dark" ? base.dark : undefined;
+
+      const override =
+        typeof direct !== "undefined" ? direct : typeof bag !== "undefined" ? bag : legacyDark;
+
+      // override may be { value: ... } or a raw primitive/array
+      const overrideValue =
+        override && typeof override === "object" && "value" in override ? override.value : override;
+
+      if (typeof overrideValue !== "undefined" && overrideValue !== "None") {
+        raw = overrideValue;
+      }
     }
 
     return resolveRawValue(raw, theme);
@@ -88,12 +129,12 @@ function resolveReferenceNode(node: any, theme: PwdrThemeKey): any {
 
 /**
  * Resolve a node coming from systemTokens (pwdr.sys.*).
- * System tokens don't have theme variations, so we just unwrap value / recurse.
+ * System tokens don't have theme variations.
  */
 function resolveSystemNode(node: any, theme: PwdrThemeKey): any {
   if (!node) return undefined;
 
-  if ("value" in node) {
+  if (typeof node === "object" && "value" in node) {
     return resolveRawValue((node as any).value, theme);
   }
 
@@ -115,20 +156,16 @@ function resolveSystemNode(node: any, theme: PwdrThemeKey): any {
 function resolveMixinNode(node: any, theme: PwdrThemeKey): Record<string, any> {
   const result: Record<string, any> = {};
 
-  if (!node || typeof node !== "object") {
-    return result;
-  }
+  if (!node || typeof node !== "object") return result;
 
   for (const [prop, leaf] of Object.entries(node)) {
     const maybeValue = (leaf as any)?.value;
 
     if (typeof maybeValue !== "undefined") {
-      // leaf: { value: ... }
       result[prop] = resolveRawValue(maybeValue, theme);
       continue;
     }
 
-    // Nested structure, recurse (useful if you ever nest mixins)
     if (typeof leaf === "object" && leaf !== null) {
       result[prop] = resolveMixinNode(leaf, theme);
     }
@@ -139,35 +176,17 @@ function resolveMixinNode(node: any, theme: PwdrThemeKey): Record<string, any> {
 
 /**
  * Main token resolver.
- *
- * Examples:
- *  token("pwdr.sys.color.palette.neutral.050")
- *    -> "#F4F4FF"
- *
- *  token("pwdr.ref.color.border.default")
- *    -> "#F4F4FF" (after resolving ref -> sys)
- *
- *  token("pwdr.ref.elevation.surface.active")
- *    -> "0px 0px 4px 0px #6666FF"
- *
- *  token("pwdr.mxn.typography.title.xl")
- *    -> { "font-family": "...", "font-weight": "...", "font-size": "..." }
  */
-export function token(
-  name: string,
-  options: TokenOptions = {}
-): any {
-  const theme: PwdrThemeKey = options.theme ?? "light";
+export function token(name: string, options: TokenOptions = {}): any {
+  const theme = normalizeTheme(options.theme);
 
   if (!name || typeof name !== "string") return name;
 
   // Allow passing literal non-token values through
-  if (!name.startsWith("pwdr.")) {
-    return name;
-  }
+  if (!name.startsWith("pwdr.")) return name;
 
   const parts = name.split(".");
-  const [, kind, ...rest] = parts; // kind = "sys" | "ref" | "mxn"
+  const [, kind, ...rest] = parts; // "sys" | "ref" | "mxn"
   const path = rest.join(".");
 
   switch (kind) {
@@ -184,7 +203,6 @@ export function token(
       return resolveMixinNode(node, theme);
     }
     default:
-      // Unknown kind, return as-is
       return name;
   }
 }

@@ -15,7 +15,7 @@ export const shape = {
         "40":  { value: "40px" },
         "60":  { value: "60px" },
         "80":  { value: "80px" },
-        "max":   { value: "9999px" }
+        "9999":   { value: "9999px" }
     }
 } as const;
 
