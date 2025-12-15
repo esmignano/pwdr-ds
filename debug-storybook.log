@@ -1,0 +1,44 @@
+[13:27:46.953] [INFO] Storybook upgrade - v10.1.9
+[13:27:46.957] [INFO] detect-projects-spinner-start: Detecting projects...
+[13:27:46.959] [DEBUG] Finding Storybook projects...
+[13:27:47.033] [DEBUG] Found 1 Storybook projects
+[13:27:47.036] [INFO] detect-projects-spinner: Detecting projects: 1 projects
+[13:27:47.036] [DEBUG] Getting Storybook data...
+[13:27:47.037] [DEBUG] Getting Storybook info...
+[13:27:47.199] [DEBUG] Loading main config...
+[13:27:47.199] [DEBUG] Getting stories paths...
+[13:27:47.216] [DEBUG] Getting package manager...
+[13:27:48.009] [DEBUG] Getting package.json info for C:/Users/emignano/Documents/Sasaki/Research/pwdr-ds/package.json...
+[13:27:48.009] [DEBUG] Getting Storybook version...
+[13:27:48.010] [DEBUG] C:/Users/emignano/Documents/Sasaki/Research/pwdr-ds/.storybook - Validating before version... undefined
+[13:27:48.010] [DEBUG] SB_CLI_UPGRADE_0005 (UpgradeStorybookUnknownCurrentVersionError): We couldn't determine the current version of Storybook in your project.
+
+Are you running the Storybook CLI in a project without Storybook?
+It might help if you specify your Storybook config directory with the --config-dir flag.
+[13:27:48.010] [INFO] detect-projects-spinner-stop: 1 project detected
+[13:27:48.011] [DEBUG] Found 0 valid projects and 1 error projects
+[13:27:48.011] [ERROR] Failed to get projects
+[13:27:48.012] [ERROR] [38;2;241;97;97mError: ❌ Storybook found errors while collecting data for the following projects:
+C:/Users/emignano/Documents/Sasaki/Research/pwdr-ds/.storybook:
+SB_CLI_UPGRADE_0005 (UpgradeStorybookUnknownCurrentVersionError): We couldn't determine the current version of Storybook in your project.
+
+Are you running the Storybook CLI in a project without Storybook?
+It might help if you specify your Storybook config directory with the --config-dir flag.
+    at validateVersion (file:///C:/Users/emignano/AppData/Local/npm-cache/_npx/f74b1ef8ee82e8e8/node_modules/@storybook/cli/dist/_node-chunks/chunk-XETK7IDC.js:252:11)
+    at processProject (file:///C:/Users/emignano/AppData/Local/npm-cache/_npx/f74b1ef8ee82e8e8/node_modules/@storybook/cli/dist/_node-chunks/chunk-XETK7IDC.js:297:82)
+Please fix the errors and run the upgrade command again.[39m
+    at getProjects (file:///C:/Users/emignano/AppData/Local/npm-cache/_npx/f74b1ef8ee82e8e8/node_modules/@storybook/cli/dist/_node-chunks/chunk-XETK7IDC.js:468:13)
+    at async upgrade (file:///C:/Users/emignano/AppData/Local/npm-cache/_npx/f74b1ef8ee82e8e8/node_modules/@storybook/cli/dist/_node-chunks/run-JMPCWACJ.js:9360:24)
+    at async file:///C:/Users/emignano/AppData/Local/npm-cache/_npx/f74b1ef8ee82e8e8/node_modules/@storybook/cli/dist/_node-chunks/run-JMPCWACJ.js:9558:70
+    at async withTelemetry (file:///C:/Users/emignano/AppData/Local/npm-cache/_npx/f74b1ef8ee82e8e8/node_modules/storybook/dist/_node-chunks/chunk-3Q5I3QYJ.js:209:12)
+    at async Command.<anonymous> (file:///C:/Users/emignano/AppData/Local/npm-cache/_npx/f74b1ef8ee82e8e8/node_modules/@storybook/cli/dist/_node-chunks/run-JMPCWACJ.js:9554:3)
+[13:27:48.026] [INFO] Storybook collects completely anonymous usage telemetry. We use it to shape Storybook's roadmap and prioritize features. You can learn more, including how to opt out, at https://storybook.js.org/telemetry
+[13:27:49.679] [ERROR] Error: ❌ Storybook found errors while collecting data for the following projects:
+C:/Users/emignano/Documents/Sasaki/Research/pwdr-ds/.storybook:
+SB_CLI_UPGRADE_0005 (UpgradeStorybookUnknownCurrentVersionError): We couldn't determine the current version of Storybook in your project.
+
+Are you running the Storybook CLI in a project without Storybook?
+It might help if you specify your Storybook config directory with the --config-dir flag.
+    at validateVersion (file:///C:/Users/emignano/AppData/Local/npm-cache/_npx/f74b1ef8ee82e8e8/node_modules/@storybook/cli/dist/_node-chunks/chunk-XETK7IDC.js:252:11)
+    at processProject (file:///C:/Users/emignano/AppData/Local/npm-cache/_npx/f74b1ef8ee82e8e8/node_modules/@storybook/cli/dist/_node-chunks/chunk-XETK7IDC.js:297:82)
+Please fix the errors and run the upgrade command again.
