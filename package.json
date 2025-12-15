@@ -7,6 +7,6 @@
     "build": "pnpm -r build",
     "lint": "pnpm -r lint",
     "test": "pnpm -r test",
-    "storybook": "pnpm --filter storybook dev"
+    "storybook": "pnpm --filter @pwdr/components dev"
   }
 }
