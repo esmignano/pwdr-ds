@@ -13,14 +13,16 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "predev": "pnpm --dir ../theme build",
     "dev": "storybook dev -p 6006",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@pwdr/tokens": "workspace:*",
     "@pwdr/theme": "workspace:*",
+    "@pwdr/tokens": "workspace:*",
     "react": "^18.0.0",
+    "react-aria-components": "^1.13.0",
     "react-dom": "^18.0.0"
   },
   "devDependencies": {

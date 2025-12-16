@@ -15,5 +15,10 @@
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint src",
     "test": "vitest"
+  },
+  "dependencies": {
+    "@pwdr/theme": "workspace:*",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   }
 }
