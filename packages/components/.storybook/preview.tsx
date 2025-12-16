@@ -10,8 +10,8 @@ const preview: Preview = {
       toolbar: {
         title: "Color scheme",
         items: [
-          { value: "light", title: "Light" },
-          { value: "dark", title: "Dark" },
+          { value: "light", title: "☀︎ Light" },
+          { value: "dark", title: "⏾ Dark" },
         ],
         dynamicTitle: true,
       },
@@ -31,24 +31,24 @@ const preview: Preview = {
   },
 
   decorators: [
-    (Story, ctx) => (
-      <PwdrProvider
-        colorScheme={ctx.globals.colorScheme}
-        contrast={ctx.globals.contrast}
-      >
-        <div style={{ padding: 24 }}>
-          <Story />
-        </div>
-      </PwdrProvider>
-    ),
+    (Story, ctx) => {
+      const scheme = ctx.globals.colorScheme;
+      const bg = scheme === "dark" ? "#050038	" : "#ffffff";
+
+      return (
+        <PwdrProvider colorScheme={scheme} contrast={ctx.globals.contrast}>
+          <div style={{ padding: 24, minHeight: "100vh", background: bg}}>
+            <Story />
+          </div>
+        </PwdrProvider>
+      );
+    },
   ],
 
   parameters: {
     controls: { expanded: true },
-    a11y: {
-      // Keeps a11y enabled; you can tighten rules later.
-      test: "todo",
-    },
+    a11y: { test: "todo",},
+    backgrounds: { disable: true, },
   },
 };
 

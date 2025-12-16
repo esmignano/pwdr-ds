@@ -56,42 +56,70 @@ export default function Button(props: ButtonProps) {
    * Tokens (theme from PwdrProvider)
    * ---------------------------- */
 
-  const radius = useToken("pwdr.ref.shape.radius.md");
+  const radius = 
+    size === "small"
+        ? useToken("pwdr.ref.shape.radius.100")
+        : useToken("pwdr.ref.shape.radius.150");
 
   const paddingY =
     size === "small"
-      ? useToken("pwdr.ref.spacing.100")
-      : useToken("pwdr.ref.spacing.150");
+      ? useToken("pwdr.ref.shape.space.050")
+      : useToken("pwdr.ref.shape.space.100");
 
   const paddingX =
     size === "small"
-      ? useToken("pwdr.ref.spacing.200")
-      : useToken("pwdr.ref.spacing.300");
+      ? useToken("pwdr.ref.shape.space.100")
+      : useToken("pwdr.ref.shape.space.150");
 
   const typography =
     size === "small"
-      ? useToken("pwdr.mxn.typography.body.sm")
-      : useToken("pwdr.mxn.typography.body.md");
+      ? useToken("pwdr.mxn.typography.title.xxs")
+      : useToken("pwdr.mxn.typography.title.sm");
 
   const background =
     variant === "primary"
       ? useToken("pwdr.ref.color.surface.active")
       : variant === "secondary"
         ? useToken("pwdr.ref.color.surface.default")
-        : "transparent";
+      : variant === "secondary"
+        ? useToken("pwdr.ref.color.surface.default")
+      : variant === "tertiary"
+        ? "transparent"
+      : variant === "discovery"
+        ? useToken("pwdr.ref.color.surface.discovery")
+      : variant === "alert"
+        ? useToken("pwdr.ref.color.surface.alert")
+      : variant === "warning"
+        ? useToken("pwdr.ref.color.surface.warning")
+      : variant === "success"
+        ? useToken("pwdr.ref.color.surface.success")
+      : "transparent";
 
   const color =
     variant === "primary"
       ? useToken("pwdr.ref.color.text.on-surface-active")
-      : useToken("pwdr.ref.color.text.active");
+    : variant === "secondary"
+      ? useToken("pwdr.ref.color.text.on-surface-default-secondary")
+    : variant === "tertiary"
+      ? useToken("pwdr.ref.color.text.on-surface-default-tertariy")
+    : variant === "discovery"
+      ? useToken("pwdr.ref.color.text.on-surface-discovery")
+    : variant === "alert"
+      ? useToken("pwdr.ref.color.text.on-surface-alert")
+    : variant === "warning"
+      ? useToken("pwdr.ref.color.text.on-surface-warning")
+    : variant === "success"
+      ? useToken("pwdr.ref.color.text.on-surface-success")
+    : variant === "disabled"
+      ? useToken("pwdr.ref.color.text.on-surface-default")
+    : useToken("pwdr.ref.color.text.active");
 
-  const borderColor =
-    variant === "tertiary"
-      ? useToken("pwdr.ref.color.border.default")
-      : "transparent";
+  const borderColor = "transparent";
 
   const focusRing =
     useToken("pwdr.ref.color.focus-ring") ?? "rgba(102, 102, 255, 0.6)";
+
+  const boxShadow = useToken("pwdr.ref.elevation.surface.default.100");
 
   const baseStyle: React.CSSProperties = {
     display: "inline-flex",
@@ -109,6 +137,7 @@ export default function Button(props: ButtonProps) {
     cursor: isDisabled ? "not-allowed" : "pointer",
     userSelect: "none",
     WebkitTapHighlightColor: "transparent",
+    boxShadow,
 
     transition:
       "background 120ms ease, box-shadow 120ms ease, transform 120ms ease",

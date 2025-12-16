@@ -26,6 +26,34 @@ function Row(props: { gap?: number; wrap?: boolean; children: React.ReactNode })
   );
 }
 
+/**
+ * Convert current Storybook args -> copy/pasteable JSX shown in Docs/Source.
+ * - Omits Storybook action handlers (e.g. onClick)
+ * - Omits props with value: undefined or false
+ * - Boolean true -> prop shorthand (e.g. disabled)
+ */
+function buttonArgsToSource(args: any) {
+  const { children, onClick, ...rest } = args;
+
+  const props = Object.entries(rest)
+    .filter(([, value]) => value !== undefined && value !== false)
+    .map(([key, value]) => {
+      if (typeof value === "string") return `${key}="${value}"`;
+      if (typeof value === "boolean") return key;
+      return `${key}={${JSON.stringify(value)}}`;
+    })
+    .join(" ");
+
+  const content =
+    children === undefined || children === null
+      ? ""
+      : typeof children === "string"
+        ? children
+        : `{${JSON.stringify(children)}}`;
+
+  return `<Button${props ? " " + props : ""}>${content}</Button>`;
+}
+
 const meta: Meta<typeof Button> = {
   title: "Components/Button/Button",
   component: Button,
@@ -78,6 +106,14 @@ type Story = StoryObj<typeof Button>;
 export const Playground: Story = {
   name: "Playground",
   render: (args) => <Button {...args} />,
+  parameters: {
+    docs: {
+      source: {
+        type: "dynamic",
+        transform: (_src: string, ctx: any) => buttonArgsToSource(ctx.args),
+      },
+    },
+  },
 };
 
 export const Variants: Story = {
@@ -85,13 +121,27 @@ export const Variants: Story = {
   render: (args) => (
     <Stack>
       <Row wrap>
-        <Button {...args} type={ButtonType.Primary}>Primary</Button>
-        <Button {...args} type={ButtonType.Secondary}>Secondary</Button>
-        <Button {...args} type={ButtonType.Tertiary}>Tertiary</Button>
-        <Button {...args} type={ButtonType.Discovery}>Discovery</Button>
-        <Button {...args} type={ButtonType.Success}>Success</Button>
-        <Button {...args} type={ButtonType.Warning}>Warning</Button>
-        <Button {...args} type={ButtonType.Alert}>Alert</Button>
+        <Button {...args} type={ButtonType.Primary}>
+          Primary
+        </Button>
+        <Button {...args} type={ButtonType.Secondary}>
+          Secondary
+        </Button>
+        <Button {...args} type={ButtonType.Tertiary}>
+          Tertiary
+        </Button>
+        <Button {...args} type={ButtonType.Discovery}>
+          Discovery
+        </Button>
+        <Button {...args} type={ButtonType.Success}>
+          Success
+        </Button>
+        <Button {...args} type={ButtonType.Warning}>
+          Warning
+        </Button>
+        <Button {...args} type={ButtonType.Alert}>
+          Alert
+        </Button>
       </Row>
     </Stack>
   ),
@@ -102,8 +152,12 @@ export const Sizes: Story = {
   render: (args) => (
     <Stack>
       <Row>
-        <Button {...args} size="small">Small</Button>
-        <Button {...args} size="standard">Standard</Button>
+        <Button {...args} size="small">
+          Small
+        </Button>
+        <Button {...args} size="standard">
+          Standard
+        </Button>
       </Row>
     </Stack>
   ),
@@ -115,9 +169,15 @@ export const States: Story = {
     <Stack>
       <Row wrap>
         <Button {...args}>Default</Button>
-        <Button {...args} disabled>Disabled</Button>
-        <Button {...args} isLoading>Loading</Button>
-        <Button {...args} type={ButtonType.Disabled}>Type=Disabled</Button>
+        <Button {...args} disabled>
+          Disabled
+        </Button>
+        <Button {...args} isLoading>
+          Loading
+        </Button>
+        <Button {...args} type={ButtonType.Disabled}>
+          Type=Disabled
+        </Button>
       </Row>
       <div style={{ fontSize: 12, opacity: 0.75 }}>
         Tip: use keyboard Tab to verify focus ring + focus-visible behavior.

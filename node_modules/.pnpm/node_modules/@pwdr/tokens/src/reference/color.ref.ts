@@ -159,7 +159,7 @@ export const color = {
       },
       active: {
         value: "pwdr.sys.color.palette.primary.500",
-        dark: { value: "None" }
+        dark: { value: "pwdr.sys.color.palette.primary.400" }
       },
       "active-hover": {
         value: "pwdr.sys.color.palette.primary.300",
@@ -205,11 +205,11 @@ export const color = {
         dark: { value: "None" }
       },
       "on-surface-default-secondary": {
-        value: "pwdr.sys.color.palette.neutral.1000",
+        value: "pwdr.sys.color.palette.primary.500",
         dark: { value: "None" }
       },
       "on-surface-default-tertariy": {
-        value: "pwdr.sys.color.palette.neutral.1000",
+        value: "pwdr.sys.color.palette.primary.500",
         dark: { value: "None" }
       },
       "on-surface-default-hover": {

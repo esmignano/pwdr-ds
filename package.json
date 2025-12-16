@@ -8,5 +8,9 @@
     "lint": "pnpm -r lint",
     "test": "pnpm -r test",
     "storybook": "pnpm --filter @pwdr/components dev"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^9.0.8",
+    "@storybook/addon-essentials": "8.6.14"
   }
 }

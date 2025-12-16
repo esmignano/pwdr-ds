@@ -1,3 +1,4 @@
+import "./global.css";
 export { PwdrProvider } from "./PwdrProvider";
 export { usePwdrTheme } from "./PwdrThemeContext";
 export type {
