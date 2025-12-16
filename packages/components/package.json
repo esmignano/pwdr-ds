@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@pwdr/tokens": "workspace:*",
+    "@pwdr/theme": "workspace:*",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

@@ -59,17 +59,17 @@ export function Button({
   // Color tokens per variant
   const bg =
     variant === "primary"
-      ? token("pwdr.ref.color.button-bg.primary", { theme })
+      ? token("pwdr.ref.color.surface.active", { theme })
       : variant === "secondary"
-        ? token("pwdr.ref.color.button-bg.secondary", { theme })
+        ? token("pwdr.ref.color.surface.default", { theme })
         : "transparent";
 
   const fg =
     variant === "primary"
-      ? token("pwdr.ref.color.button-fg.on-primary", { theme })
+      ? token("pwdr.ref.color.text.on-surface-active", { theme })
       : variant === "secondary"
-        ? token("pwdr.ref.color.button-fg.on-secondary", { theme })
-        : token("pwdr.ref.color.text.default", { theme });
+        ? token("pwdr.ref.color.text.active", { theme })
+        : token("pwdr.ref.color.text.active", { theme });
 
   const border =
     variant === "ghost"

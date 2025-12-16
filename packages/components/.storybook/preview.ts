@@ -1,32 +1,33 @@
 import type { Preview } from "@storybook/react";
+import { PwdrProvider } from "@pwdr/theme";
 
 const preview: Preview = {
   globalTypes: {
-    theme: {
-      description: "Powdr theme",
+    colorScheme: {
       defaultValue: "light",
       toolbar: {
-        title: "Theme",
-        items: [
-          { value: "light", title: "Light" },
-          { value: "dark", title: "Dark" },
-          { value: "high-contrast", title: "High Contrast" }
-        ],
-        dynamicTitle: true
-      }
-    }
+        title: "Color scheme",
+        items: ["light", "dark"],
+      },
+    },
+    contrast: {
+      defaultValue: "normal",
+      toolbar: {
+        title: "Contrast",
+        items: ["normal", "high"],
+      },
+    },
   },
   decorators: [
-    (Story, ctx) => {
-      const theme = ctx.globals.theme as string;
-      document.documentElement.dataset.pwdrTheme = theme;
-      return Story({ args: { ...(ctx.args || {}), theme } });
-    }
+    (Story, ctx) => (
+      <PwdrProvider
+        colorScheme={ctx.globals.colorScheme}
+        contrast={ctx.globals.contrast}
+      >
+        <Story />
+      </PwdrProvider>
+    ),
   ],
-  parameters: {
-    a11y: { test: "todo" },
-    controls: { expanded: true }
-  }
 };
 
 export default preview;

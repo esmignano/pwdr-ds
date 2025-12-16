@@ -14,6 +14,18 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@pwdr/tokens": "workspace:*"
+    "@pwdr/tokens": "workspace:*",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0"
+  },
+  "exports": {
+  ".": {
+    "types": "./src/index.ts",
+    "default": "./src/index.ts"
+    }
   }
 }

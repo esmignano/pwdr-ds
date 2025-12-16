@@ -178,7 +178,7 @@ function resolveMixinNode(node: any, theme: PwdrThemeKey): Record<string, any> {
  * Main token resolver.
  */
 export function token(name: string, options: TokenOptions = {}): any {
-  const theme = normalizeTheme(options.theme);
+  const theme = normalizeTheme(options?.theme ?? "light");
 
   if (!name || typeof name !== "string") return name;
 
