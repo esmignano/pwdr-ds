@@ -37,7 +37,7 @@ const preview: Preview = {
 
       return (
         <PwdrProvider colorScheme={scheme} contrast={ctx.globals.contrast}>
-          <div style={{ padding: 24, minHeight: "100vh", background: bg}}>
+          <div style={{ padding: 24, display: "inline-block", background: bg}}>
             <Story />
           </div>
         </PwdrProvider>
