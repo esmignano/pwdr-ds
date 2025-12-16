@@ -4,7 +4,7 @@ import {
   ButtonProps as AriaButtonProps,
   PressEvent,
 } from "react-aria-components";
-import { useTokens } from "@pwdr/tokens";
+import { useToken } from "@pwdr/tokens";
 
 export enum ButtonType {
   Primary = "primary",
